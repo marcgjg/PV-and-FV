@@ -99,7 +99,7 @@ def main():
             df_plot[label] = series
 
         # Create a Matplotlib figure with a larger size
-        fig, ax = plt.subplots(figsize=(12, 8))
+        fig, ax = plt.subplots(figsize=(10, 6))
         
         # Plot each curve from the DataFrame
         for col in df_plot.columns:
@@ -107,8 +107,8 @@ def main():
         
         # Set chart title and axis labels
         ax.set_title("Comparison Chart", fontsize=18)
-        ax.set_xlabel("Year", fontsize=16)
-        ax.set_ylabel("Value (€)", fontsize=16)
+        ax.set_xlabel("Year", fontsize=14)
+        ax.set_ylabel("Value (€)", fontsize=14)
         ax.legend(loc='best', fontsize=14)
 
         # Ensure a tight layout so labels are not cut off
