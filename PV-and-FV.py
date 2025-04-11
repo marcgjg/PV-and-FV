@@ -85,7 +85,7 @@ def main():
 
         # --- Matplotlib Plot ---
         # Create a larger figure: width=10 inches, height=6 inches (for example)
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(20, 12))
        
         
         for label in df_plot.columns:
