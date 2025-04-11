@@ -98,7 +98,7 @@ def main():
         for col in df_plot.columns:
             ax.plot(df_plot.index, df_plot[col], marker='o', label=col)
 
-        ax.set_title("Comparison Chart", fontsize=18)
+        # ax.set_title("Comparison Chart", fontsize=18)
         ax.set_xlabel("Year", fontsize=16)
         ax.set_ylabel("Value (€)", fontsize=16)
         ax.legend(loc='best', fontsize=14)
