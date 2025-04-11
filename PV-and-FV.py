@@ -94,7 +94,7 @@ def main():
             df_plot[label] = series
 
         # Create a Matplotlib figure. The figsize here sets resolution and clarity.
-        fig, ax = plt.subplots(figsize=(12, 8))
+        fig, ax = plt.subplots(figsize=(10, 6))
         for col in df_plot.columns:
             ax.plot(df_plot.index, df_plot[col], marker='o', label=col)
 
