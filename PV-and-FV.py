@@ -5,7 +5,7 @@ import uuid
 import matplotlib.pyplot as plt
 
 def main():
-    st.title("Future Value / Present Value Visualizer (Comparison Mode)")
+    st.title("Future Value / Present Value Visualizer")
 
     # -- Session State Setup --
     if "curves" not in st.session_state:
