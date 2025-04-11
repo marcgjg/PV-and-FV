@@ -19,7 +19,7 @@ plt.rcParams.update({
 })
 
 def main():
-    st.title("Future Value / Present Value Visualizer (Comparison Mode)")
+    st.title("Future Value / Present Value Visualizer")
 
     # Initialize session state to store curves and previous parameters.
     if "curves" not in st.session_state:
