@@ -108,7 +108,7 @@ def main():
         buf = io.BytesIO()
         fig.savefig(buf, format="png", bbox_inches="tight")
         buf.seek(0)
-        st.image(buf, use_column_width=True)
+        st.image(buf, use_container_width=True)
 
 if __name__ == "__main__":
     main()
