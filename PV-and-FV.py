@@ -3,21 +3,30 @@ import numpy as np
 import pandas as pd
 
 def main():
-    st.title("Future Value / Present Value Visualizer")
+    st.title("Future Value / Present Value Visualizer (Comparison Mode)")
 
-    # Create two columns
+    # Session state to hold all the curves the user adds
+    if "curves" not in st.session_state:
+        # We'll store curves in a dict with the key as a label, 
+        # and the value as a Pandas Series (indexed by year)
+        st.session_state["curves"] = {}
+
+    # ------------------------
+    # Column Layout
+    # ------------------------
     col1, col2 = st.columns(2)
 
-    # --- Column 1: Inputs and Table ---
     with col1:
+        # Radio button to choose Future Value vs Present Value
         calculation_type = st.radio(
             "Select Calculation Type:",
             ("Future Value", "Present Value")
         )
 
+        # Slider for the number of years
         years = st.slider("Number of years", min_value=0, max_value=50, value=10)
 
-        # Using an integer slider for the interest/discount rate in percentages
+        # Slider for the interest/discount rate in percentage
         interest_rate_percent = st.slider(
             "Interest/Discount rate (%)",
             min_value=0,
@@ -26,31 +35,16 @@ def main():
         )
         interest_rate = interest_rate_percent / 100.0
 
-        # Create a range of years from 0 up to the chosen value
+        # Define a label for the curve
+        calc_label = "FV" if calculation_type == "Future Value" else "PV"
+        curve_label = f"{calc_label} {interest_rate_percent}% {years}y"
+
+        # Compute the values
         year_range = np.arange(0, years + 1)
-
-        # Calculate the corresponding amount for each year
         if calculation_type == "Future Value":
-            # FV = 100 * (1 + r)^n
             values = 100 * (1 + interest_rate) ** year_range
-            st.subheader(f"Future Value of €100 at {interest_rate_percent}% for up to {years} year(s)")
         else:
-            # PV = 100 / (1 + r)^n
+            # Present Value
             values = 100 / ((1 + interest_rate) ** year_range)
-            st.subheader(f"Present Value of €100 at {interest_rate_percent}% for up to {years} year(s)")
 
-        # Prepare data for display and formatting
-        df = pd.DataFrame({
-            "Year": year_range,
-            "Value": values.round(2)
-        })
-
-        # Show the numeric results in a table with 2 decimal places
-        st.dataframe(df.style.format({"Value": "{:.2f}"}))
-
-    # --- Column 2: Chart ---
-    with col2:
-        st.line_chart(df, x="Year", y="Value")
-
-if __name__ == "__main__":
-    main()
+        # Create a Series with index =
