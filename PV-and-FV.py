@@ -18,7 +18,7 @@ plt.rcParams.update({
 })
 
 def main():
-    st.title("Future Value / Present Value Visualizer (Comparison Mode)")
+    st.title("Future Value / Present Value Visualizer")
 
     # -- Initialize session state values --
     if "curves" not in st.session_state:
@@ -45,7 +45,7 @@ def main():
         interest_rate_percent = st.slider("Interest/Discount rate (%)", 0, 20, 5)
         interest_rate = interest_rate_percent / 100.0
 
-        st.subheader("Chart Controls")
+        # st.subheader("Chart Controls")
         reset_button = st.button("Reset Chart")
 
         # Reset the stored curves if the reset button is clicked
