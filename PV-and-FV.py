@@ -4,9 +4,6 @@ import pandas as pd
 import uuid
 import matplotlib.pyplot as plt
 
-# Create a larger figure: width=10 inches, height=6 inches (for example)
-fig, ax = plt.subplots(figsize=(20, 12))
-
 def main():
     st.title("Future Value / Present Value Visualizer")
 
@@ -87,8 +84,10 @@ def main():
             df_plot[label] = series
 
         # --- Matplotlib Plot ---
-        fig, ax = plt.subplots()
-
+        # Create a larger figure: width=10 inches, height=6 inches (for example)
+        fig, ax = plt.subplots(figsize=(10, 6))
+       
+        
         for label in df_plot.columns:
             ax.plot(df_plot.index, df_plot[label], label=label)
 
