@@ -91,7 +91,7 @@ def main():
         st.dataframe(df_current.style.format({"Value": "{:.2f}"}))
 
     with col2:
-        st.subheader("Comparison Chart")
+        # st.subheader("Comparison Chart")
 
         # Combine all stored curves into a DataFrame
         df_plot = pd.DataFrame()
