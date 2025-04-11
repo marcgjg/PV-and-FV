@@ -87,16 +87,19 @@ def main():
 
         # --- Matplotlib Plot ---
         # Create a larger figure: width=10 inches, height=6 inches (for example)
-        fig, ax = plt.subplots(figsize=(20, 12))
+        fig, ax = plt.subplots(figsize=(12, 8))
        
         
         for label in df_plot.columns:
             ax.plot(df_plot.index, df_plot[label], label=label)
 
-        ax.set_title("Comparison Chart")
-        ax.set_xlabel("Year")
-        ax.set_ylabel("Value")
-        ax.legend()
+        ax.plot([1, 2, 3], [4, 5, 6], label="My Data")
+
+        ax.set_title("Title", fontsize=16)
+        ax.set_xlabel("X Axis", fontsize=14)
+        ax.set_ylabel("Y Axis", fontsize=14)
+        ax.tick_params(axis='both', labelsize=12)
+        ax.legend(fontsize=12)
 
         # Display the Matplotlib figure in Streamlit
         st.pyplot(fig)
