@@ -4,6 +4,8 @@ import pandas as pd
 import uuid
 import matplotlib.pyplot as plt
 
+st.set_page_config(layout="wide")  # must be the first Streamlit command
+
 def main():
     st.title("Future Value / Present Value Visualizer")
 
