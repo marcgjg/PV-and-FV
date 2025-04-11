@@ -4,6 +4,9 @@ import pandas as pd
 import uuid
 import matplotlib.pyplot as plt
 
+# Create a larger figure: width=10 inches, height=6 inches (for example)
+fig, ax = plt.subplots(figsize=(10, 6))
+
 def main():
     st.title("Future Value / Present Value Visualizer")
 
