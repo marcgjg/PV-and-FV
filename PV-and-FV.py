@@ -47,4 +47,72 @@ def main():
             # Present Value
             values = 100 / ((1 + interest_rate) ** year_range)
 
-        # Create a Series with index =
+        # Create a Series with index = year_range
+        # Round the values to 2 decimals for clarity
+        curve_series = pd.Series(data=values.round(2), index=year_range)
+
+        # ------------------------
+        # Buttons to Add/Reset Curves
+        # ------------------------
+        st.subheader("Comparison Controls")
+
+        add_button = st.button("Add to Chart")
+        reset_button = st.button("Reset Chart")
+
+        if add_button:
+            # Add this new curve to session_state
+            st.session_state["curves"][curve_label] = curve_series
+
+        if reset_button:
+            # Clear out any saved curves
+            st.session_state["curves"] = {}
+
+        # ------------------------
+        # Current (Latest) Results Table
+        # ------------------------
+        # Show the numeric results for the *current* parameters
+        df_current = pd.DataFrame({
+            "Year": year_range,
+            "Value": values.round(2)
+        })
+        st.subheader(f"Current {calc_label} at {interest_rate_percent}% for {years} year(s)")
+        st.dataframe(df_current.style.format({"Value": "{:.2f}"}))
+
+    # ------------------------
+    # Column 2: Chart
+    # ------------------------
+    with col2:
+        st.subheader("Comparison Chart")
+
+        # Build a DataFrame combining all the stored curves
+        # If no curves are stored yet, we'll just show the current one
+        if len(st.session_state["curves"]) == 0:
+            # Plot only the current curve
+            df_plot = df_current.copy()
+            df_plot.set_index("Year", inplace=True)
+            df_plot.rename(columns={"Value": curve_label}, inplace=True)
+
+        else:
+            # Combine all curves, aligning on the year index
+            # We'll expand out to the max year range among all curves
+            all_curves_df = pd.DataFrame()
+
+            for label, series in st.session_state["curves"].items():
+                all_curves_df[label] = series
+
+            # Additionally, also include the *current* unsaved curve
+            # so user can see the effect of changing sliders in real time
+            all_curves_df[curve_label + " (unsaved)"] = curve_series
+
+            df_plot = all_curves_df
+
+        # Plot the combined DataFrame
+        st.line_chart(df_plot)
+
+        # Optionally show a table of all stored curves to help compare
+        # (Comment out if you only want the chart)
+        # st.write("All Saved Curves:")
+        # st.dataframe(df_plot.style.format("{:.2f}"))
+
+if __name__ == "__main__":
+    main()
