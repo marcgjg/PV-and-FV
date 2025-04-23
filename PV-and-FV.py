@@ -270,7 +270,7 @@ def main():
                 xaxis=dict(
                     title="Year",
                     tickmode='linear',
-                    tick0=1,
+                    tick0=0,
                     dtick=5 if years > 20 else 1,
                     gridcolor='rgba(230, 230, 230, 0.8)'
                 ),
