@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import io
 
+
 # Set the page layout to wide and add a custom title/icon
 st.set_page_config(
     page_title="PV/FV Calculator",
