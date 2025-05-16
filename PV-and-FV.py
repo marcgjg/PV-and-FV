@@ -327,7 +327,7 @@ def main():
         st.markdown('</div>', unsafe_allow_html=True)
     
     # Footer with information
-    st.markdown('<div class="footer">Explore how money grows or discounts over time with different interest rates.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="footer">Explore how money grows or discounts over time with different interest rates | Developed by Prof. Marc Goergen with the help of ChatGPT, Perplexity and Claude</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
